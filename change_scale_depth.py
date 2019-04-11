@@ -33,11 +33,11 @@ def im_chscaledepth (img, depth, scale):
     elif scale > 1:
         scale_up = int(np.ceil(scale))
 
-        img_temp_2 = np.empty((h, scale_up * w), dtype = img.dtype)
+        img_temp_2 = np.empty((h, scale_up * w, 3), dtype = img.dtype)
         for i in range(scale_up):
-            img_temp_2[:, i::scale_up] = img
+            img_temp_2[:, i::scale_up] = img_temp_1
 
-        img_temp_3 = np.empty((scale_up * h, scale_up * w), dtype = img.dtype)
+        img_temp_3 = np.empty((scale_up * h, scale_up * w, 3), dtype = img.dtype)
         for i in range(scale_up):
             img_temp_3[i::scale_up, :] = img_temp_2
 
@@ -66,8 +66,8 @@ def im_chscaledepth (img, depth, scale):
     return 1, img_temp
 
 def main():
-    img = cv2.imread("imagem.jpg", cv2.IMREAD_GRAYSCALE)
-    ret, new_img = im_chscaledepth(img, 8, 3)
+    img = cv2.imread("im1.jpg", cv2.IMREAD_ANYCOLOR)
+    ret, new_img = im_chscaledepth(img, 2, 2.4)
     cv2.imwrite("nova.jpg", new_img)
 
 if __name__  == "__main__":
