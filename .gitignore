@@ -103,6 +103,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+*.bmp
 *.jpg
 .vscode/
 trab.py
